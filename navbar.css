@@ -1,0 +1,138 @@
+:root{
+    --general-padding:16px;
+    --navcolor: rgb(114, 21, 201);
+    --pcfont:16px;
+    --mobilefont:13px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header .menu-icon{
+    display: none;
+}
+
+.icons{
+    display: flex;
+    align-items: center;
+}
+
+header li, header a, header button, header input[type=search]{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: var(--pcfont);
+    text-decoration: none;
+    color:black;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: var(--navcolor)
+}
+
+.logo{
+    border-radius: 5px;
+    width:  70px;
+}
+
+.links{
+    list-style: none;
+    display: flex;
+    background-color: rgb(40, 35, 58);
+    border-radius: 10px;
+}
+
+.links li{
+    padding: var(--general-padding);
+}
+
+.links li a{
+    padding: var(--general-padding);
+    color: white;
+}
+
+.links li a:hover{
+    color: var(--navcolor)
+}
+
+header button{
+    background-color: rgb(40, 35, 58);
+    color: white;
+}
+
+::placeholder {
+    color: white;
+}
+
+header input[type=search]{
+    width: 200px;
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: var(--navcolor);
+    padding: var(--general-padding);   
+    color: white;
+    background-image: url('search.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    padding-left: 45px;
+    transition: width 0.4s ease-in-out;
+}
+  
+input[type=search]:focus {
+    width: 700px;
+    outline-color: white;
+}
+
+.form-search{
+    color: white;
+    
+}
+
+.links>*{
+    width: 140px;
+}
+
+.register, .login{
+    border-radius: 8px;
+    padding: var(--general-padding);
+    width: 140px;
+    justify-content: center;
+}
+
+.account{
+    display: flex;
+    gap: 5px;
+}
+
+
+@media (max-width: 900px){
+    header .menu-icon, header .logo{
+        display:block;
+        width: 40px;
+    }
+
+    header nav{
+        display: none;
+    }
+
+    .icons{
+        flex-direction: row-reverse;
+    }
+
+    header li, header a, header button, header input[type=search]{
+        font-size: var(--mobilefont);
+    }
+
+    
+
+}
+

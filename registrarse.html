@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="info.css">
+    <link rel="stylesheet" href="form.css">
     <title>Document</title>
 </head>
 <body>
@@ -12,18 +14,17 @@
     <header>
         <div class="icons">
         <a href="index.html"><img src="logo.png" alt="" class="logo"></a>
-        <a href="index.html"><img src="menu.png" alt="" class="menu-icon"></a>
+        <img src="menu.png" alt="" class="menu-icon" onclick="sb_open()">
         </div>
-        <nav>
+        <nav id="sidebar">
             <ul class="links">
+                <img src="menu.png" alt="" class="menu-icon" onclick="sb_close()">
                 <li><a href="partes.html">Partes</a></li>
                 <li><a href="builds.html">Builds</a></li>
                 <li><a href="cuenta-index.html">Cuenta</a></li>
                 <li><a href="cuenta-builds.html">Mis Builds</a></li>
             </ul>
         </nav>
-
-          
         
         <input type="search" placeholder="Buscar Partes">
        
@@ -32,7 +33,50 @@
             <a href="registrarse.html"><button class="register">Registrarse</button></a>
             <a href="login.html"><button class="login">Iniciar Sesión</button></a>
         </div>
-        
     </header>
+    <script src="sidebar.js"></script>
+
+    <p class="title">
+        Registrarse
+    </p>
+    <div class="form">
+        <div class="input-group">
+            <label for="name">Nombre: </label>
+            <input type="text" name="name" class="form-control">
+        </div>
+        
+        <div class="input-group">
+            <label for="username">Usuario: </label>
+            <input type="text" name="username" class="form-control">
+        </div>
+
+        <div class="input-group">
+            <label for="email">Email: </label>
+            <input type="email" name="email" class="form-control">
+        </div>
+
+        <div class="input-group">
+            <label for="contra">Contraseña: </label>
+            <input type="password" name="contra" class="form-control">
+        </div>
+
+        <div class="input-group">
+            <label for="contrase">Re-Ingresar Contraseña: </label>
+            <input type="password" name="contrase" class="form-control">
+        </div>
+
+        
+        <div class="policy">
+            <input type="checkbox" name="check" >
+            <label for="check">Acepto los <a href="#">Terminos de uso</a> y <a href="#">Política de privacidad</a>. </label>
+        </div>
+
+
+
+        <button class="btn">Registrarse</button>
+        
+    </div>
+
+    
 </body>
 </html> 

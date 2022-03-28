@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap');
+
+
 :root{
-    --general-padding:16px;
+    --general-padding:15px 10px;
     --navcolor: rgb(114, 21, 201);
-    --pcfont:16px;
-    --mobilefont:13px;
+    --pcfont:1em;
+    --mobilefont:0.6em;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap');
 
 *{
     box-sizing: border-box;
@@ -35,7 +37,8 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-    background-color: var(--navcolor)
+    background-color: var(--navcolor);
+    min-width: fit-content;
 }
 
 .logo{
@@ -80,16 +83,10 @@ header input[type=search]{
     padding: var(--general-padding);   
     color: white;
     background-image: url('search.png');
-    background-position: 10px 10px;
+    background-position: 5px center;
     background-repeat: no-repeat;
-    background-size: 30px;
+    background-size: 20px;
     padding-left: 45px;
-    transition: width 0.4s ease-in-out;
-}
-  
-input[type=search]:focus {
-    width: 700px;
-    outline-color: white;
 }
 
 .form-search{
@@ -97,24 +94,70 @@ input[type=search]:focus {
     
 }
 
-.links>*{
-    width: 140px;
-}
-
 .register, .login{
     border-radius: 8px;
     padding: var(--general-padding);
-    width: 140px;
+    min-width: max-content;
     justify-content: center;
 }
 
 .account{
     display: flex;
-    gap: 5px;
+    gap: 0.2em;
+}
+
+header input[type=search]{
+    transition: width 0.4s ease-in-out;
+}
+  
+input[type=search]:focus {
+    outline-color: white;
+}
+
+.links>*{
+    min-width: max-content;
+}
+
+@media (min-width: 1245px){
+    input[type=search]:focus {
+        width:500px;
+        outline-color: white;
+    }
 }
 
 
-@media (max-width: 900px){
+@media (max-width: 958px){
+
+    header{
+        position: sticky;
+        top: 0;
+        width: 100%;
+    }
+
+    .links>*{
+        min-width: auto;
+    }
+
+    .links{
+        border-radius: 0;
+        height: 100%;
+        width: 80%;
+    }
+
+    input[type=search]:focus {
+        
+        outline-color: white;
+    }
+
+    header input[type=search]{
+        transition: none;
+    }
+
+    header input[type=search]{
+        width:min-content;
+        outline-color: white;
+    }
+
     header .menu-icon, header .logo{
         display:block;
         width: 40px;
@@ -122,8 +165,20 @@ input[type=search]:focus {
 
     header nav{
         display: none;
+        top: 0;
+        left: -1px;
+        position:absolute;
+        height: 200vh;
+        width: 100%;
+        transition: all 1s;
     }
 
+    header nav>ul{
+        display: flex;
+        flex-direction: column;
+        font-size:x-large;
+    }
+    
     .icons{
         flex-direction: row-reverse;
     }
@@ -131,8 +186,6 @@ input[type=search]:focus {
     header li, header a, header button, header input[type=search]{
         font-size: var(--mobilefont);
     }
-
-    
 
 }
 

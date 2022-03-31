@@ -1,0 +1,107 @@
+:root{
+    --navcolor: rgb(114, 21, 201);
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width:max-content;
+
+}
+
+.item img{
+    width: 10em;
+}
+
+.rate img{
+    width: 1em;
+}
+
+.part-title{
+    padding: 1em 0 0 1em;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.part{
+    overflow: auto;
+    white-space: nowrap;
+    border: 1px solid black;
+    border-radius: 0.4em;
+    min-height: max-content;
+    margin: 1em;
+}
+
+.part>*{
+    display: inline-block;
+    padding: 1em;
+    transition: all 350ms;
+}
+
+.part>*:hover{
+    background-color: var(--navcolor);
+    border-radius: 0.4em;
+    color: white;
+}
+
+.part::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
+
+  }
+
+.part::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #c2c9d2;
+  }
+
+.actions div *{
+    width: 16em;
+    height: 4em;
+    margin: 0.5em;
+    font-size:large;
+    font-weight: bold;
+    border-radius: 3em;
+    padding: 0.5em;
+    text-align: center;
+}
+
+.actions div button{
+    background-color: rgb(40, 35, 58);
+    color: white;
+}
+
+.actions div button:hover{
+    background-color: var(--navcolor);
+}
+
+.actions div{
+    display: flex;
+    flex-direction: row;
+}
+
+.actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+::placeholder{
+    color: var(--navcolor);
+}
+
+@media (max-width: 958px){
+    .actions div *{
+        width: 13em;
+        height: 3em;
+        margin: 0.4em;
+        font-size:smaller;
+        font-weight: bold;
+        border-radius: 3em;
+        padding: 0.5em;
+        text-align: center;
+    }
+    
+}
+

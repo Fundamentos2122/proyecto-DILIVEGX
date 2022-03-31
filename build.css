@@ -1,0 +1,72 @@
+.build-header{
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.build-header div{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.build-header div div{
+    display: flex;
+    flex-direction: column;
+}
+
+.build-header .autor img{
+    border-radius: 1em;
+    border: 1px solid black;
+    width: 10em;
+}
+
+.i1, .i2{
+    width: 2em;
+}
+
+.parts{
+    padding: 1em;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.parts>*{
+    display: flex;
+    gap: 1em;
+    padding: 0.5em 0 0.5em 0;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.final button{
+    width: 16em;
+    height: 4em;
+    margin: 0.5em;
+    font-size:large;
+    font-weight: bold;
+    border-radius: 3em;
+    padding: 0.5em;
+    text-align: center;
+    background-color: rgb(40, 35, 58);
+    color: white;
+}
+
+.price, .total-price{
+    padding: 1em;
+    font-weight: bolder;
+    font-size: larger;
+    display: inline-block;
+}
+
+@media (max-width: 958px){
+    .build-header {
+        flex-direction: column;
+    }
+    .build-header .autor{
+        flex-direction: column;
+    }
+}

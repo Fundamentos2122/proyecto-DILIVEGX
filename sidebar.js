@@ -1,9 +1,16 @@
 function sb_open(){
     document.getElementById("sidebar").style.display = "block";
+    setTimeout(()=>{
+        document.getElementById("sidebar").className= ' headeropen';
+    }, 300);
 }
 
 function sb_close(){
-    document.getElementById("sidebar").style.display = "none";
+    document.getElementById("sidebar").className= ' headerclose';
+    setTimeout(()=>{
+        document.getElementById("sidebar").style.display = "none";
+    }, 300);
+    
 }
 
 

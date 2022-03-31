@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap');
+
+
+:root{
+    --navcolor: rgb(114, 21, 201);
+}
+
+
+*{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+}
+.hinfo{
+    display: flex;
+    padding: 1em;
+}
+
+.hinfo>*{
+    padding-left: 1em;
+}
+
+.names{
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
+}
+
+.profileimg{
+    gap: 0.3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+
+.profileimg > img:first-child{
+    border-radius: 1em;
+    box-shadow: 0.5em 0.5em 2em black;
+    border: 0.3em solid black;
+    width: 9em;
+    height: 9em;
+}
+
+.editbtn{
+    width: 1em;
+    height: 1em;
+}
+
+.acmenu{
+    display: flex;
+}
+
+.acmenu>*{
+    border: 1px solid black;
+    border-radius: 5px 5px 0 0;
+    list-style: none;
+    padding: 0.1em 0.5em;
+    background-color: var(--navcolor);
+    text-decoration: none;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.selected{
+    background-color: white;
+    border-bottom: none;
+    color: black;
+}
+
+
+.acmenu p{
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width:100%;
+    color: transparent;
+}
+
+.editbtn{
+    cursor: pointer;
+}
+
+@media (max-width: 958px){
+    .hinfo{
+        flex-direction: column;
+        gap: 1em
+        ;
+    }
+
+    .names{
+        align-items: center;
+    }
+
+    .acmenu>*{
+        font-size: smaller;
+    }
+}
+
+

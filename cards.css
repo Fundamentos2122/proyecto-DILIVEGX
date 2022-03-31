@@ -1,0 +1,64 @@
+.card{
+    display: flex;
+    gap: 3.7em;
+    width: 100%;
+}
+
+.card>*{
+    padding: 1em;
+}
+
+
+.card img:first-child{
+    width: 6em;
+    height: 6.5em;
+    border-radius: 1.5em;
+}
+
+.card .i1,.card .i2,.card .i3{
+    width: 4em;
+    height: 4em;
+    cursor: pointer;
+}
+
+.card > div{
+    display: flex;
+    gap: 2em;
+}
+
+@media (max-width: 958px){
+    .card img:first-child{
+        border-radius: 0.5em;
+    }
+
+    .card{
+        gap: 0.6em;
+    }
+    
+    .card>*{
+        padding: 0.1em;
+    }
+
+    .card img{
+        width: 2.5em;
+        height: 3em;
+    }
+
+    .card .i1,.card .i2,.card .i3{
+        width: 1.7em;
+        height: 1.7em;
+    }
+
+    .card-infoi{
+        display: flex;
+        gap: 0.2em;
+        font-size: small;
+    }
+
+    .card > div{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+}
+

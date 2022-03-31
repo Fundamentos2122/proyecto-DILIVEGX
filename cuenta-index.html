@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="info.css">
+    <link rel="stylesheet" href="cuentaheader.css">
+    <link rel="stylesheet" href="perfil.css">
     <title>Document</title>
 </head>
-<body>
-    <script src="sidebar.js"></script>
+<body onresize="change()">
     <header>
         <div class="icons">
-        <a href="index.html"><img src="logo.png" alt="" class="logo"></a>
-        <img src="menu.png" alt="" class="menu-icon" onclick="sb_open()">
+        <a href="index.html"><img src="assets/logo.png" alt="" class="logo"></a>
+        <img src="assets/menu.png" alt="" class="menu-icon" onclick="sb_open()">
         </div>
         <nav id="sidebar">
             <ul class="links">
-                <img src="menu.png" alt="" class="menu-icon" onclick="sb_close()">
+                <img src="assets/menu.png" alt="" class="menu-icon" onclick="sb_close()">
                 <li><a href="partes.html">Partes</a></li>
                 <li><a href="builds.html">Builds</a></li>
                 <li><a href="cuenta-index.html">Cuenta</a></li>
@@ -35,10 +36,71 @@
     </header>
     <script src="sidebar.js"></script>
 
+    <div class="header">
+        <div class="hinfo">
+            <div class="profileimg">
+                <img src="https://picsum.photos/150" class=>
+                <img class="editbtn" src="assets/edit.png" alt="">
+            </div>
+            <div class="names">
+                <p>(Nombre completo)</p>
+                <p>(User Name)</p>
+            </div>
+        </div>
+    </div>
 
-    <div class="info">
-        <p>Página creada por: Diego Eugenio Saldívar Narváez</p>
-        <p>Materia: Fundamentos Web</p>
+    <ul class="acmenu">
+        <li class="selected" onclick="location.href='cuenta-index.html';">Perfil</li>
+        <li onclick="location.href='cuenta-builds.html';">Tus Builds</li>
+        <li onclick="location.href='cuenta-reviews.html';">Tus reviews</li>
+        <li onclick="location.href='cuenta-favoritas.html';">Partes Favoritas</li>
+        <li onclick="location.href='cuenta-guardadas.html';">Builds Guardadas</li>
+        <p>.</p>
+    </ul>
+
+
+
+    <div class="profile">
+        <div class="pdata">
+            <p>Nombre:</p>
+            <p class="pname"></p>
+            <img class="editbtn" src="assets/edit.png" alt="">
+        </div>
+
+        <div class="pdata">
+            <p>Usuario:</p>
+            <p class="puser"></p>
+            <img class="editbtn" src="assets/edit.png" alt="">
+        </div>
+
+        <div class="pdata">
+            <p>Correo:</p>
+            <p class="pmail"></p>
+            <img class="editbtn" src="assets/edit.png" alt="">
+        </div>
+
+        <div class="pass">
+            <label for="passold">Contraseña actual</label>
+            <input type="password" name="passold">
+        </div>
+
+        <div class="pass">
+            <label for="passnew">Nueva contraseña</label>
+            <input type="password" name="passnew">
+        </div>
+
+        <button>Actualizar contraseña</button>
+    </div>
+
+    <div class="revb">
+        <div>
+            <p>Cantidad de Reviews: </p>
+            <p class="#reviews"></p>
+        </div>
+        <div>
+            <p>Cantidad de Builds: </p>
+            <p class="#builds"></p>
+        </div>
     </div>
 </body>
 </html> 

@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="info.css">
+    <link rel="stylesheet" href="cuentaheader.css">
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="cards.css">
     <title>Document</title>
 </head>
 <body onresize="change()">
@@ -34,10 +37,34 @@
     </header>
     <script src="sidebar.js"></script>
 
-
-    <div class="info">
-        <p>Página creada por: Diego Eugenio Saldívar Narváez</p>
-        <p>Materia: Fundamentos Web</p>
+    <div class="header">
+        <div class="hinfo">
+            <div class="profileimg">
+                <img src="https://picsum.photos/150" class=>
+                <img class="editbtn" src="assets/edit.png" alt="">
+            </div>
+            <div class="names">
+                <p>(Nombre completo)</p>
+                <p>(User Name)</p>
+            </div>
+        </div>
     </div>
+
+    <ul class="acmenu">
+        <li onclick="location.href='cuenta-index.html';">Perfil</li>
+        <li onclick="location.href='cuenta-builds.html';">Tus Builds</li>
+        <li onclick="location.href='cuenta-reviews.html';">Tus reviews</li>
+        <li class="selected" onclick="location.href='cuenta-favoritas.html';">Partes Favoritas</li>
+        <li onclick="location.href='cuenta-guardadas.html';">Builds Guardadas</li>
+        <p>.</p>
+    </ul>
+
+    <div id="favoritas">
+
+    </div>
+
+    <script src="generator-favoritas.js"></script>
+
+    
 </body>
 </html> 

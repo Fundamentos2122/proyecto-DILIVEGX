@@ -1,0 +1,116 @@
+:root{
+    --general-padding:15px 10px;
+    --navcolor: rgb(114, 21, 201);
+    --pcfont:1em;
+    --mobilefont:0.6em;
+}
+
+.filter-bar{
+    background-color: rgb(40, 35, 58);
+    padding: 1em;
+    text-align: end;
+}
+
+.filter-bar img{
+    width: 2em;
+}
+
+.card{
+    margin: 1em;
+    display: flex;
+    gap: 3.7em;
+    width: fit-content;
+}
+
+.card>*{
+    padding: 1em;
+    font-size: x-large;
+}
+
+
+.card img:first-child{
+    width: 6em;
+    height: 6.5em;
+    border-radius: 1.5em;
+}
+
+.card > div{
+    display: flex;
+    gap: 2em;
+}
+
+input[type="radio"]{
+    opacity: 0.5;
+}
+
+.filter{
+    background-color: var(--navcolor);
+    color: white;
+    width: fit-content;
+    padding: 1em;
+    border-radius: 1em;
+    border: 0.5em solid rgb(40, 35, 58);
+    position:fixed;
+    right: -100%;
+    transition: right 300ms;
+}
+
+.filteropen{
+    background-color: var(--navcolor);
+    color: white;
+    width: fit-content;
+    padding: 1em;
+    border-radius: 1em;
+    border: 0.5em solid rgb(40, 35, 58);
+    position:fixed;
+    right: 0%;
+    transition: right 500ms;
+}
+
+.filterclose{
+    background-color: var(--navcolor);
+    color: white;
+    width: fit-content;
+    padding: 1em;
+    border-radius: 1em;
+    border: 0.5em solid rgb(40, 35, 58);
+    position:fixed;
+    right: -100%;
+    transition: right 500ms;
+}
+
+@media (max-width: 958px){
+    .card>*{
+        font-size:medium;
+    }
+
+    .card img:first-child{
+        border-radius: 0.5em;
+    }
+
+    .card{
+        gap: 0.6em;
+    }
+    
+    .card>*{
+        padding: 0.1em;
+    }
+
+    .card img{
+        width: 2.5em;
+        height: 3em;
+    }
+
+    .card-infoi{
+        display: flex;
+        gap: 0.2em;
+        font-size: small;
+    }
+
+    .card > div{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+}
+

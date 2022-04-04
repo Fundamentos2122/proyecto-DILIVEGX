@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="info.css">
     <link rel="stylesheet" href="cuentaheader.css">
     <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="admin.css">
     <title>Document</title>
 </head>
 <body onresize="change()">
@@ -50,57 +51,34 @@
     </div>
 
     <ul class="acmenu">
-        <li class="selected" onclick="location.href='cuenta-index.html';">Perfil</li>
+        <li onclick="location.href='cuenta-index.html';">Perfil</li>
         <li onclick="location.href='cuenta-builds.html';">Tus Builds</li>
         <li onclick="location.href='cuenta-reviews.html';">Tus reviews</li>
         <li onclick="location.href='cuenta-favoritas.html';">Partes Favoritas</li>
         <li onclick="location.href='cuenta-guardadas.html';">Builds Guardadas</li>
+        <li class="selected" onclick="location.href='Admin.html';">Admin Menu</li>
         <p>.</p>
     </ul>
 
+    <p class="category-title">Users</p>
+    <div class="category" id="users" onclick="location.href='cuenta-index.html';">
 
-
-    <div class="profile">
-        <div class="pdata">
-            <p>Nombre:</p>
-            <p class="pname"></p>
-            <img class="editbtn" src="assets/edit.png" alt="">
-        </div>
-
-        <div class="pdata">
-            <p>Usuario:</p>
-            <p class="puser"></p>
-            <img class="editbtn" src="assets/edit.png" alt="">
-        </div>
-
-        <div class="pdata">
-            <p>Correo:</p>
-            <p class="pmail"></p>
-            <img class="editbtn" src="assets/edit.png" alt="">
-        </div>
-
-        <div class="pass">
-            <label for="passold">Contraseña actual</label>
-            <input type="password" name="passold">
-        </div>
-
-        <div class="pass">
-            <label for="passnew">Nueva contraseña</label>
-            <input type="password" name="passnew">
-        </div>
-
-        <button>Actualizar contraseña</button>
     </div>
 
-    <div class="revb">
-        <div>
-            <p>Cantidad de Reviews: </p>
-            <p class="#reviews"></p>
-        </div>
-        <div>
-            <p>Cantidad de Builds: </p>
-            <p class="#builds"></p>
+    <p class="category-title">Reviews con reporte</p>
+    <div class="category" id="users" onclick="location.href='cuenta-index.html';">
+        <div class="review">
+            <p class="revtext">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, nam? Ipsa perferendis unde fugiat cum sit ipsam ad. Hic quam cumque nemo rem illum quos sint, odio voluptate nostrum sed?</p>
+            <img class="icon" src="assets/trash.svg" alt="">
         </div>
     </div>
+
+
+    <script src="admin-generator.js"></script>
+
+    <div class="agregar">
+        <button class="btn">Agregar parte</button>
+    </div>
+
 </body>
 </html> 

@@ -1,0 +1,53 @@
+.product{
+    text-align: center;
+}
+
+.product p, .revtitle{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.product img{
+    width: 15em;
+}
+
+.product-info{
+    display: flex;
+    margin: 1.5em;
+    gap: 1em;
+    align-items: center;
+}
+
+.product-info>*{
+    width: 50%;
+}
+
+.especificaciones{
+    font-size: large;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.price{
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+
+
+.graphics img{
+width: 100%;
+}
+
+@media (max-width: 958px){
+    .product-info{
+        flex-direction: column;
+    }
+    .product-info>*{
+        width: 100%;
+    }
+}

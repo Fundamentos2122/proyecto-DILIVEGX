@@ -35,7 +35,31 @@
     text-align: center;
 }
 
+.newrev{
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    gap: 0.5em;
+}
 
+.newrev textarea{
+    resize: none;
+}
+
+.newrev p{
+    font-weight: bold;
+    font-size: larger;
+}
+
+.newrev .btn{
+    font-size: 1em;
+    border-radius: 1em;
+    padding: 1em;
+    min-width: max-content;
+    background-color: rgb(40, 35, 58);
+    color: white;
+    font-weight: bold;
+}
 
 
 

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function(){
         <p class="like-count">##</p>
         <img src="assets/dislike.svg" alt="" class="i2">
         <p class="dislike-count">##</p>
+        <img src="assets/report.svg" alt="" class="i3">
     </div>`
     }
 })

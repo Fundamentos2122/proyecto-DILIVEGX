@@ -71,7 +71,16 @@ header button{
     color: white;
 }
 
-::placeholder {
+input[id^="search"]::-webkit-input-placeholder {
+    color: white;
+}
+input[id^="search"]::-moz-placeholder { 
+    color: white;
+}
+input[id^="search"]:-ms-input-placeholder { 
+    color: white;
+}
+input[id^="search"]:-moz-placeholder { 
     color: white;
 }
 
@@ -82,7 +91,7 @@ header input[type=search]{
     background-color: var(--navcolor);
     padding: var(--general-padding);   
     color: white;
-    background-image: url('assets/search.png');
+    background-image: url('assets/icons/search.png');
     background-position: 5px center;
     background-repeat: no-repeat;
     background-size: 20px;

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const builds = document.getElementById("busqueda");
     for(var i=0;i<30;i++){
         builds.innerHTML+=`<div class="card" style="cursor: pointer;">
-        <img src="assets/cpu.png" alt="">
+        <img src="assets/icons/cpu.png" alt="">
         <div>
         <div class="build-info">
             <p class="build-name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function(){
          </div>
     </div>
     <div class="card" style="cursor: pointer;">
-        <img src="assets/case.png" alt="">
+        <img src="assets/icons/case.png" alt="">
         <div>
         <div class="build-info">
             <p class="build-name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function(){
          </div>
     </div>
     <div class="card" style="cursor: pointer;">
-        <img src="assets/cooler.png" alt="">
+        <img src="assets/icons/cooler.png" alt="">
         <div>
         <div class="build-info">
             <p class="build-name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(){
          </div>
     </div>
     <div class="card" style="cursor: pointer;">
-        <img src="assets/fan.png" alt="">
+        <img src="assets/icons/fan.png" alt="">
         <div>
         <div class="build-info">
             <p class="build-name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function(){
          </div>
     </div>
     <div class="card" style="cursor: pointer;">
-        <img src="assets/gpu.png" alt="">
+        <img src="assets/icons/gpu.png" alt="">
         <div>
         <div class="build-info">
             <p class="build-name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function(){
          </div>
     </div>
     <div class="card" style="cursor: pointer;">
-        <img src="assets/hdd.png" alt="">
+        <img src="assets/icons/hdd.png" alt="">
         <div>
         <div class="build-info">
             <p class="build-name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function(){
          </div>
     </div>
     <div class="card" style="cursor: pointer;">
-        <img src="assets/mb.png" alt="">
+        <img src="assets/icons/mb.png" alt="">
         <div>
         <div class="build-info">
             <p class="build-name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function(){
          </div>
     </div>
     <div class="card" style="cursor: pointer;">
-        <img src="assets/psu.webp" alt="">
+        <img src="assets/icons/psu.webp" alt="">
         <div>
         <div class="build-info">
             <p class="build-name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function(){
          </div>
     </div>
     <div class="card" style="cursor: pointer;">
-        <img src="assets/ssd.png" alt="">
+        <img src="assets/icons/ssd.png" alt="">
         <div>
         <div class="build-info">
             <p class="build-name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>

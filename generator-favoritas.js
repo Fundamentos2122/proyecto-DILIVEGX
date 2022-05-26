@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const builds = document.getElementById("favoritas");
     for(var i=0;i<30;i++){
         builds.innerHTML+=`<div class="card">
-        <img src="assets/cpu.png" alt="" style="cursor: pointer;">
+        <img src="assets/icons/cpu.png" alt="" style="cursor: pointer;">
         <div>
         <div class="build-info">
             <p class="build-name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function(){
             <p class="build-price">$####</p>
         </div>
          </div>
-        <img src="assets/trash.svg" alt="" class="i1">
+        <img src="assets/icons/trash.svg" alt="" class="i1">
     </div>`
     }
 })

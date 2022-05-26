@@ -41,8 +41,8 @@
 
 .part>*:hover{
     background-color: var(--navcolor);
-    border-radius: 0.4em;
     color: white;
+    border-radius: 0.4em;
 }
 
 .part::-webkit-scrollbar {

@@ -38,6 +38,10 @@
     font-weight: bold;
 }
 
+.updt{
+    border-radius: 0.5em;
+}
+
 .revb{
     display: flex;
     gap: 1em;

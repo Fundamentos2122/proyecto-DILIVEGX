@@ -36,31 +36,8 @@ include 'assets/header/header.php';
         </div>
         </div>
     </div>
-    <div class="parts">
-        <div id="cpu" onclick="location.href='part.html';">
-            
-        </div>
-        <div id="mb" onclick="location.href='part.html';">
+    <div class="parts" id="parts">
 
-        </div>
-        <div id="case" onclick="location.href='part.html';">
-
-        </div>
-        <div id="gpu" onclick="location.href='part.html';">
-
-        </div>
-        <div id="ssd" onclick="location.href='part.html';">
-
-        </div>
-        <div id="cpc" onclick="location.href='part.html';">
-
-        </div>
-        <div id="fan" onclick="location.href='part.html';">
-
-        </div>
-        <div id="psu" onclick="location.href='part.html';">
-
-        </div>
     </div>
     <div class="final">
         <div>
@@ -108,9 +85,9 @@ function printBuild(list){
             if(this.readyState === 4){
                 if(this.status === 200){
                     let part = JSON.parse(this.responseText);
-                    document.getElementById("cpu").innerHTML = ` <p>CPU:</p>
+                    document.getElementById("parts").innerHTML += ` <div onclick="location.href='part.php?id=${part.id}';"><p>CPU:</p>
                     <p>${part.Name}</p>
-                    <p class="price"> $${part.Price}</p>`
+                    <p class="price"> $${part.Price}</p></div>`
                     printmb();
                 }
                 else{
@@ -127,9 +104,9 @@ function printBuild(list){
             if(this.readyState === 4){
                 if(this.status === 200){
                     let part = JSON.parse(this.responseText);
-                    document.getElementById("mb").innerHTML = `<p>MotherBoard:</p>
+                    document.getElementById("parts").innerHTML += `<div onclick="location.href='part.php?id=${part.id}';"><p>MotherBoard:</p>
                 <p>${part.Name}</p>
-                <p class="price"> $${part.Price}</p>`
+                <p class="price"> $${part.Price}</p></div>`
                 printcas();
                 }
                 else{
@@ -147,9 +124,9 @@ function printBuild(list){
             if(this.readyState === 4){
                 if(this.status === 200){
                     let part = JSON.parse(this.responseText);
-                    document.getElementById("case").innerHTML = `<p>Case:</p>
+                    document.getElementById("parts").innerHTML += `<div onclick="location.href='part.php?id=${part.id}';"><p>Case:</p>
             <p>${part.Name}</p>
-            <p class="price"> $${part.Price}</p>`
+            <p class="price"> $${part.Price}</p></div>`
                 printgpu();
                 }
                 else{
@@ -167,9 +144,9 @@ function printBuild(list){
             if(this.readyState === 4){
                 if(this.status === 200){
                     let part = JSON.parse(this.responseText);
-                    document.getElementById("gpu").innerHTML = `<p>GPU:</p>
+                    document.getElementById("parts").innerHTML += `<div onclick="location.href='part.php?id=${part.id}';"><p>GPU:</p>
             <p>${part.Name}</p>
-            <p class="price"> $${part.Price}</p>`
+            <p class="price"> $${part.Price}</p></div>`
                 printssd();
                 }
                 else{
@@ -187,9 +164,9 @@ function printBuild(list){
             if(this.readyState === 4){
                 if(this.status === 200){
                     let part = JSON.parse(this.responseText);
-                    document.getElementById("ssd").innerHTML = `<p>SSD:</p>
+                    document.getElementById("parts").innerHTML += `<div onclick="location.href='part.php?id=${part.id}';"><p>SSD:</p>
             <p>${part.Name}</p>
-            <p class="price"> $${part.Price}</p>`
+            <p class="price"> $${part.Price}</p></div>`
                 printcpc();
                 }
                 else{
@@ -207,9 +184,9 @@ function printBuild(list){
             if(this.readyState === 4){
                 if(this.status === 200){
                     let part = JSON.parse(this.responseText);
-                    document.getElementById("cpc").innerHTML = `<p>CPU Cooler:</p>
+                    document.getElementById("parts").innerHTML += `<div onclick="location.href='part.php?id=${part.id}';"><p>CPU Cooler:</p>
             <p>${part.Name}</p>
-            <p class="price"> $${part.Price}</p>`
+            <p class="price"> $${part.Price}</p></div>`
                 printfan();
                 }
                 else{
@@ -227,9 +204,9 @@ function printBuild(list){
             if(this.readyState === 4){
                 if(this.status === 200){
                     let part = JSON.parse(this.responseText);
-                    document.getElementById("fan").innerHTML = `<p>Case Fans:</p>
+                    document.getElementById("parts").innerHTML += `<div onclick="location.href='part.php?id=${part.id}';"><p>Case Fans:</p>
             <p>${part.Name}</p>
-            <p class="price"> $${part.Price}</p>`
+            <p class="price"> $${part.Price}</p></div>`
                 printpsu();
                 }
                 else{
@@ -247,9 +224,9 @@ function printBuild(list){
             if(this.readyState === 4){
                 if(this.status === 200){
                     let part = JSON.parse(this.responseText);
-                    document.getElementById("psu").innerHTML = `<p>PSU:</p>
+                    document.getElementById("parts").innerHTML += `<div onclick="location.href='part.php?id=${part.id}';"><p>PSU:</p>
             <p>${part.Name}</p>
-            <p class="price"> $${part.Price}</p>`
+            <p class="price"> $${part.Price}</p></div>`
                 }
                 else{
                     console.log("Error");

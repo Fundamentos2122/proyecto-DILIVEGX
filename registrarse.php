@@ -50,6 +50,13 @@ include 'assets/header/header.php';
             <input type="password" name="contrase" class="form-control">
         </div>
 
+        <div class="input-group">
+                <label for="photo">Foto(JPG):</label>
+                <input type="file" name="photo" id="photo" onchange="handleFiles(this.files)">
+        </div>
+
+
+
         <div class="policy">
             <input type="checkbox" name="check" >
             <label for="check">Acepto los <a href="#">Terminos de uso</a> y <a href="#">Política de privacidad</a>. </label>
@@ -62,7 +69,14 @@ include 'assets/header/header.php';
     </div>
 
     <script>
-
+        var file;
+        function handleFiles(files){
+            file = files[0];
+            if(files[0].type=="image/jpeg"){
+                
+            }
+        }
+        
         function subir(){
             if(document.getElementsByName("name")[0].value=="")
                 window.location.href ="registrarse.php?error=No se insertó un nombre";
@@ -78,7 +92,10 @@ include 'assets/header/header.php';
                 window.location.href ="registrarse.php?error=Es necesario aceptar los Términos de uso y Política";
             else if(document.getElementsByName("contraseña")[0].value!=document.getElementsByName("contrase")[0].value)
                 window.location.href ="registrarse.php?error=Contraseñas no coinciden";
+            else if(!file || file.type!="image/jpeg")
+                window.location.href ="registrarse.php?error=La imagen es inexistente o no es JPG";
             else{
+                        document.getElementById("photo").files 
                         let xhttp = new XMLHttpRequest();
 
                         xhttp.open("POST", "controllers/users_controller.php", true);
@@ -97,16 +114,18 @@ include 'assets/header/header.php';
                                 }
                             }
                         };
+                        console.log(file);
                         let data = {
                             _method: 'POST',
                             name: document.getElementsByName("name")[0].value,
                             username: document.getElementsByName("username")[0].value,
                             email: document.getElementsByName("email")[0].value,
                             password: document.getElementsByName("contraseña")[0].value,
+                            image: file
                         };
                         xhttp.send(JSON.stringify(data));
 
-                        window.location.href ="login.php"
+                        //window.location.href ="login.php"
             }
 
         }

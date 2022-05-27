@@ -31,16 +31,16 @@ include 'assets/header/header.php';
         
     </div>
 </div>
-
-    <p class="revtitle">Reviews</p>
-    <div id="reviews"></div>
-    <script src="generator-part-reviews.js"></script>
-
     <div class="newrev">
         <p>Nueva Review</p>
         <textarea name="newreview" id="newrev" cols="100" rows="8"></textarea>
-        <button class="btn">Publicar review</button>
+        <button class="btn" id="post">Publicar review</button>
     </div>
+
+    <p class="revtitle">Reviews</p>
+    <div id="reviews"></div>
+
+
     
 
     <div class="info">
@@ -49,10 +49,9 @@ include 'assets/header/header.php';
     </div>
 
     <script>
-
         product = document.getElementsByClassName("product");
         especificaciones = document.getElementsByClassName("especificaciones");
-
+        var id;
 
         document.addEventListener("DOMContentLoaded", function(){
             getPart();
@@ -72,6 +71,8 @@ include 'assets/header/header.php';
                         console.log(this.responseText);
                         let list = JSON.parse(this.responseText);
                         paintPart(list);
+                        getReviews(list.id);
+                        id = list.id;
                     }
                     else{
                         console.log("Error");
@@ -85,13 +86,84 @@ include 'assets/header/header.php';
         }
 
         function paintPart(list) {
-                product[0].innerHTML += `<img src="${list.Image}" alt="">
+                product[0].innerHTML += `<img src="data:image/jpg;base64,${list.Image}" alt="">
                                         <p>${list.Name}</p>`;
-
+                console.log(list.Image);
                 especificaciones[0].innerHTML +=`<p>${list.Description}</p>
                                                 <p class="price">$${list.Price}</p>`
         }
 
+        function getReviews(id){
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.open("GETPart",`controllers/review_controller.php?id=${id}`,true);
+
+            xhttp.onreadystatechange = function(){
+                if(this.readyState === 4){
+                    if(this.status === 200){
+                        console.log(this.responseText);
+                        let list = JSON.parse(this.responseText);
+                        paintReviews(list);
+                    }
+                    else{
+                        console.log("Error");
+                    }
+                }
+            };
+
+            xhttp.send();
+
+            return [];
+        }
+
+        function paintReviews(list) {
+            const builds = document.getElementById("reviews");
+            for(var i=0;i<list.length;i++){
+                builds.innerHTML+=`<div class="card">
+                <img src="https://picsum.photos/150" alt="">
+                <div class="comentario">
+                    <p>${list[i].Review}</p>
+                </div>
+                <img src="assets/icons/like.svg" alt="" class="i1">
+                <p class="like-count">${list[i].CantLikes}</p>
+                <img src="assets/icons/dislike.svg" alt="" class="i2">
+                <p class="dislike-count">${list[i].CantDisLikes}</p>
+            </div>`
+            }
+        }
+
+
+
+
+        document.getElementById("post").onclick = function(){
+            var review = document.getElementById("newrev").value;
+            document.getElementById("newrev").value = "";
+            let xhttp = new XMLHttpRequest();
+                        xhttp.open("POST", "controllers/review_controller.php", true);
+
+                        xhttp.setRequestHeader("Content-type", "application/json");
+
+                        xhttp.onreadystatechange = function() {
+                            if (this.readyState === 4) {
+                                if (this.status === 200) {
+                                    if (this.responseText === "Registro guardado") {
+                                        getReviews();
+                                    }
+                                }
+                                else {
+                                    console.log("Error");
+                                }
+                            }
+                        };
+                        let data = {
+                            _method: 'POST',
+                            idParte: id,
+                            Review: review
+                        };
+                        xhttp.send(JSON.stringify(data));
+                        
+
+        };
     </script>
 </body>
 </html> 

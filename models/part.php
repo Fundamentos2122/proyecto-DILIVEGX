@@ -85,7 +85,7 @@ class part {
         $this->_Price = $Price;
     }
     public function setImage($Image) {
-        $this->_Image = $Image;
+        $this->_Image = base64_encode($Image);
     }
     public function setSocket($Socket) {
         $this->_Socket = $Socket;

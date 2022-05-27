@@ -84,6 +84,63 @@ else if($_SERVER["REQUEST_METHOD"] === "POST"){
     }
     exit();
 }
+else if($_SERVER["REQUEST_METHOD"] === "POSTL"){
+    if (array_key_exists("id", $_POST)) {
+            putBuildL($_POST["id"]);
+    }
+    else {
+        $data = json_decode(file_get_contents("php://input"));
+            putBuildL($data->id);
+    }
+    exit();
+}
+else if($_SERVER["REQUEST_METHOD"] === "POSTD"){
+    if (array_key_exists("id", $_POST)) {
+            putBuildD($_POST["id"]);
+    }
+    else {
+        $data = json_decode(file_get_contents("php://input"));
+            putBuildD($data->id);
+    }
+    exit();
+}
+
+function putBuildL($id){
+    global $connection;
+    try{
+        $query = $connection->prepare('UPDATE build SET CantLikes = CantLikes+1 WHERE id = :id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        if($query->rowCount() === 0){
+            echo "Error en la actualización";
+        }
+        else{
+            echo "Registro actualizado";
+        }
+    }
+    catch(PDOException $e){
+        echo $e;
+    }
+}
+function putBuildD($id){
+    global $connection;
+    try{
+        $query = $connection->prepare('UPDATE build SET CantDisLikes = CantDisLikes+1 WHERE id = :id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        if($query->rowCount() === 0){
+            echo "Error en la actualización";
+        }
+        else{
+            echo "Registro actualizado";
+        }
+    }
+    catch(PDOException $e){
+        echo $e;
+    }
+}
 
 
 function postBuild($name,$autor,$cpu,$mb,$ram,$cas,$gpu,$ssd,$cpc,$psu,$fan,$CantLikes,$CantDisLikes,$price,$image, $redirect){

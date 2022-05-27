@@ -30,7 +30,7 @@ include 'assets/header/header.php';
             ?></p>
             </div>
         </div>
-    </div>
+</div>
 
     <ul class="acmenu">
         <li onclick="location.href='cuenta-index.php';">Perfil</li>

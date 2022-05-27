@@ -19,9 +19,9 @@ function getCpus() {
     xhttp.onreadystatechange = function(){
         if(this.readyState === 4){
             if(this.status === 200){
-                console.log(this.responseText);
                 let list = JSON.parse(this.responseText);
                 paintCpus(list);
+                console.log("hola");
             }
             else{
                 console.log("Error");
@@ -35,26 +35,24 @@ function getCpus() {
 }
 
 function paintCpus(list) {
-
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item"><a href="part.php?id=${list[i].id}"><img src="${list[i].Image}" alt="" class="item-img"><p>${list[i].Name}</p></a></div>`;
+        html +=`<div class="item"><a href="part.php?id=${list[i].id}"><img src="data:image/jpg;base64,${list[i].Image}" alt="" class="item-img"><p>${list[i].Name}</p></a></div>`;
     }
 
-    CPUlist.innerHTML += html; //Le mueves
+    CPUlist.innerHTML += html; 
 }
 
 function getGpus() {
 
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GETgpus","controllers/part_controller.php",true);//Se le puso esto
+    xhttp.open("GETgpus","controllers/part_controller.php",true);
 
     xhttp.onreadystatechange = function(){
         if(this.readyState === 4){
             if(this.status === 200){
-                console.log(this.responseText);
                 let list = JSON.parse(this.responseText);
                 paintGpus(list);
             }
@@ -74,10 +72,10 @@ function paintGpus(list) {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item"><a href="part.php?id=${list[i].id}"><img src="${list[i].Image}" alt="" class="item-img"><p>${list[i].Name}</p></a></div>`;
+        html +=`<div class="item"><a href="part.php?id=${list[i].id}"><img src="data:image/jpg;base64,${list[i].Image}" alt="" class="item-img"><p>${list[i].Name}</p></a></div>`;
     }
 
-    GPUlist.innerHTML += html; //Le mueves
+    GPUlist.innerHTML += html; 
 }
 
 

@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $user;
 
             while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $user = new User($row["id"], $row["Name"], $row["UserName"], $row["Email"], $row["Password"], $row["Type"]);
+                $user = new User($row["id"], $row["Name"], $row["UserName"], $row["Email"], $row["Password"], $row["Type"], $row["Image"]);
             }
 
             if (!password_verify($password, $user->getPassword())) {
@@ -45,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["username"] = $user->getUsername();
             $_SESSION["email"] = $user->getEmail();
             $_SESSION["type"] = $user->getType();
+            $_SESSION["image"] = $user->getImage();
 
             header('Location: http://localhost/proyecto');
             exit();

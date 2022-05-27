@@ -7,15 +7,17 @@ class User {
     private $_email;
     private $_password;
     private $_type;
+    private $_Image;
     
 
-    public function __construct($id,$name,$username,$email,$password,$type) {
+    public function __construct($id,$name,$username,$email,$password,$type,$Image) {
         $this->setId($id);
         $this->setName($name);
         $this->setUsername($username);
         $this->setEmail($email);
         $this->setPassword($password);
         $this->setType($type);
+        $this->setImage($Image);
     }
 
     public function getId() {
@@ -66,6 +68,14 @@ class User {
         $this->_type = $type;
     }
 
+    public function getImage() {
+        return $this->_Image;
+    }
+
+    public function setImage($Image) {
+        $this->_Image = base64_encode($Image);
+    }
+
 
 
     public function getArray() {
@@ -77,6 +87,7 @@ class User {
         $array["Email"] = $this->getEmail();
         $array["Password"] = $this->getPassword();
         $array["Type"] = $this->getType();
+        $array["Image"] = $this->getImage();
         return $array;
     }
 }

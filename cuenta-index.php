@@ -13,22 +13,9 @@
 <?php
 include 'assets/header/header.php';
 ?>
-
-    <div class="header">
-        <div class="hinfo">
-            <div class="profileimg">
-                <img src="assets/icons/account.png" class=>
-            </div>
-            <div class="names">
-                <p><?php
-                echo $_SESSION["name"];
-                ?></p>
-                <p><?php
-                echo $_SESSION["username"];
-            ?></p>
-            </div>
-        </div>
-    </div>
+<?php
+include 'assets/header/cuentaheader.php';
+?>
 
     <ul class="acmenu">
         <li class="selected" onclick="location.href='cuenta-index.php';">Perfil</li>

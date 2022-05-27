@@ -41,8 +41,15 @@ if($_SERVER["REQUEST_METHOD"] === "GETuser"){
     $email = trim($_POST["email"]);
     $password = password_hash(trim($_POST["password"]), PASSWORD_DEFAULT);
     $type = "normal";
+    $photo = "";
+    if (sizeof($_FILES) > 0) {
+        $tmp_name = $_FILES["photo"]["tmp_name"];
+
+        $photo = file_get_contents($tmp_name);
+    }
+
     
-    postUser($name, $username, $email, $password, $type, NULL);
+    postUser($name, $username, $email, $password, $type, $photo);
     }
     else {
         $data = json_decode(file_get_contents("php://input"));
@@ -77,7 +84,7 @@ function postUser($name, $username, $email, $password, $type, $image){
             echo "Error en la inserción";
         }
         else {
-
+            header('Location: http://localhost/proyecto/login.php');
         }
     }
     catch(PDOException $e) {

@@ -30,7 +30,8 @@ include 'assets/header/cuentaheader.php';
         <li class="selected" onclick="location.href='Admin.php';">Admin Menu</li>
         <p>.</p>
     </ul>
-
+    
+    <div id="adminmenu" style="display: none;">
     <p class="category-title">Users</p>
     <div class="category" id="users">
         
@@ -38,6 +39,7 @@ include 'assets/header/cuentaheader.php';
 
     <p class="category-title">Reviews con reporte</p>
     <div class="category" id="revs">
+        
     </div>
 
     
@@ -104,6 +106,21 @@ include 'assets/header/cuentaheader.php';
         </div>
         <button class="btn" style="cursor: pointer;">Agregar parte</button>
     </form>
-
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            checkAdmin();
+        })
+        function checkAdmin(){
+        if(<?php 
+                if(array_key_exists("id",$_SESSION))
+                    if($_SESSION["type"]=="admin")
+                        echo json_encode(true);
+                    else
+                        echo json_encode(false);
+                ?>==true)
+        document.getElementById("adminmenu").style.display = "block";
+        }
+    </script>
 </body>
 </html> 

@@ -119,7 +119,7 @@ $hola = "prueba";
             let html = '';
             for(var i = 0; i < list.length; i++) 
                 if(id==list[i].Type)
-                html +=`<div class="card" style="cursor: pointer;" onclick="window.location='http://localhost/proyecto/part.php?id=${list[i].id}'>
+                html +=`<div class="card" style="cursor: pointer;" onclick="window.location='http://localhost/proyecto/part.php?id=${list[i].id}'">
                         <img src="data:image/jpg;base64,${list[i].Image}" alt="">
                         <div>
                         <div class="build-info">

@@ -1,4 +1,5 @@
 <header id = "ignore">
+        
         <div class="icons">
         <a href="index.php"><img src="assets/icons/logo.png" alt="" class="logo"></a>
         <img src="assets/icons/menu.png" alt="" class="menu-icon" onclick="sb_open()">
@@ -22,7 +23,7 @@
             </ul>
         </nav>
         
-        <input id=search type="search" placeholder="Buscar Partes">
+        <input id="search" type="search" placeholder="Buscar Partes" onkeypress="search">
        
         <div class="account">
             <?php
@@ -36,4 +37,11 @@
             
         </div>
     </header>
+    <script>
+        document.getElementById("search").addEventListener("keypress", (event)=> {
+            if (event.keyCode === 13) {
+            window.location.href = `http://localhost/proyecto/partes.php?search=${document.getElementById("search").value}`;
+            }
+        });
+    </script>
     <script src="sidebar.js"></script>

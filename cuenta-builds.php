@@ -24,13 +24,18 @@ include 'assets/header/cuentaheader.php';
         <li onclick="location.href='cuenta-reviews.php';">Tus reviews</li>
         <li onclick="location.href='cuenta-favoritas.php';">Partes Favoritas</li>
         <li onclick="location.href='cuenta-guardadas.php';">Builds Guardadas</li>
+        <?php
+            if(array_key_exists("type",$_SESSION))
+                if($_SESSION["type"] == "admin")
+                    echo '<li onclick="location.href=`cuenta-admin.php`;">Admin Menu</li>'
+        ?>
         <p>.</p>
     </ul>
     
     <div id="builds">
 
     </div>
-    <script src="generator-builds.js"></script>
+    <script src = "assets/js/cuenta-builds.js"></script>
     
     
 </body>

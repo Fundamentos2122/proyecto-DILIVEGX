@@ -9,12 +9,19 @@
     <link rel="stylesheet" href="info.css">
     <link rel="stylesheet" href="build.css">
     <title>Document</title>
+    <script src = "pdflibrary/html2pdf.bundle.min.js"></script>
 </head>
 <body onresize="change()">
 <?php
 include 'assets/header/header.php';
+if(array_key_exists("id",$_SESSION))
+    echo '<div style="display: flex; gap: 1em; margin: 1em; align-items: center;">
+                <img id="save" src="assets/icons/guardar.svg" alt="" style="width:1.5em; cursor: pointer;" onclick="save();">
+                <p id="saved">Guardar</p>
+          </div>';
 ?>
 
+    <div id="print">
     <div class="build-header">
         <h1 class="name" id="name">
             (build name)
@@ -26,11 +33,10 @@ include 'assets/header/header.php';
             <img src="assets/icons/dislike.png" alt="" class="i2" id="dislike" style="cursor: pointer;">
             <p class="dislike-count" id="countD"></p>
         </div>
-        
         <div class="autor">
             <p>Autor:</p>
             <div>
-                <img src="assets/icons/account.png" alt="">
+                <img src="assets/icons/account.png" alt="" id="pimage">
                 <p class="a-name" id="autor">(Nombre autor)</p>
             </div>
         </div>
@@ -44,9 +50,9 @@ include 'assets/header/header.php';
             <p class="price">Total:</p>
             <p class="total-price" id="price">$####</p>
         </div>
-        <button>Exportar como PDF</button>
+        <button onclick="pdfe();">Exportar como PDF</button>
     </div>
-    
+    </div>
     <script>
     var id;
 
@@ -54,21 +60,126 @@ include 'assets/header/header.php';
         getBuild();
     });
 
-        function getBuild(){
+    function pdfe(){
+        const page = this.document.getElementById("parts");
+        var opt = {
+            margin:       1,
+            filename:     'myfile.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 3 },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+        html2pdf().from(page).set(opt).save();
+    }
+
+    var csaved = false;
+
+    function checkSaved(){
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.open("GET",`controllers/saved_builds_controller.php?idBuild=${id}`,true);
+
+            xhttp.onreadystatechange = function(){
+                if(this.readyState === 4){
+                    if(this.status === 200){
+                        let check = JSON.parse(this.responseText);
+                        csaved = check;
+                        if(check==true){
+                            document.getElementById("save").src="assets/icons/guardado.svg";
+                            document.getElementById("saved").innerHTML = "Guardada"
+                        }
+                        else if (check==false){
+                            document.getElementById("save").src="assets/icons/guardar.svg";
+                            document.getElementById("saved").innerHTML = "Guardar"
+                        }
+                    }
+                    else{
+                        console.log("Error");
+                    }
+                }
+            };
+
+            xhttp.send();
+
+            return [];
+        }
+
+        function save(){
+            if(csaved == false){
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.open("POST", "controllers/saved_builds_controller.php", true);
+
+            xhttp.setRequestHeader("Content-type", "application/json");
+
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4) {
+                    if (this.status === 200) {
+                        if (this.responseText === "Registro guardado") {
+                            checkSaved();
+                        }
+                    }
+                    else {
+                        console.log("Error");
+                    }
+                }
+            };
+
+            let data = {
+                _method: 'POST',
+                idBuild: id
+            };
+            xhttp.send(JSON.stringify(data));
+            } else if(csaved == true){
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.open("POST", "controllers/saved_builds_controller.php", true);
+
+                xhttp.setRequestHeader("Content-type", "application/json");
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState === 4) {
+                        if (this.status === 200) {
+                            if (this.responseText === "Registro borrado") {
+                                checkSaved()
+                            }
+                        }
+                        else {
+                            console.log("Error");
+                        }
+                    }
+                };
+
+                let data = {
+                    _method: 'DELETE',
+                    idBuild: id
+                };
+                xhttp.send(JSON.stringify(data));
+            }
+        }
+
+
+    function getBuild(){
         let xhttp = new XMLHttpRequest();
 
         xhttp.open("GET",`controllers/build_controller.php?id=${<?php echo $_GET["id"] ?>}`,true);
         xhttp.onreadystatechange = function(){
             if(this.readyState === 4){
                 if(this.status === 200){
-                    console.log(this.responseText);
                     let list = JSON.parse(this.responseText);
                     document.getElementById("countL").innerHTML = list.CantLikes;
                     document.getElementById("countD").innerHTML = list.CantDisLikes;
                     document.getElementById("name").innerHTML = list.Name;
                     document.getElementById("price").innerHTML = "$"+ list.Price;
                     id = list.id;
-                    getAutor(list.id);
+                    if(<?php
+                        if(array_key_exists("id",$_SESSION))
+                            echo json_encode(true);
+                        else
+                            echo json_encode(false);
+                        ?> == true)
+                    checkSaved();
+                    getAutor(list.idAutor);
                     printBuild(list);
                 }
                 else{
@@ -251,9 +362,9 @@ include 'assets/header/header.php';
         xhttp.onreadystatechange = function(){
             if(this.readyState === 4){
                 if(this.status === 200){
-                    console.log(this.responseText);
                     let list = JSON.parse(this.responseText);
                     document.getElementById("autor").innerHTML = list.UserName;
+                    document.getElementById("pimage").src = `data:image/jpg;base64,${list.Image}`;
                 }
                 else{
                     console.log("Error");

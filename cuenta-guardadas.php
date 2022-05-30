@@ -24,6 +24,11 @@ include 'assets/header/cuentaheader.php';
         <li onclick="location.href='cuenta-reviews.php';">Tus reviews</li>
         <li onclick="location.href='cuenta-favoritas.php';">Partes Favoritas</li>
         <li class="selected" onclick="location.href='cuenta-guardadas.php';">Builds Guardadas</li>
+        <?php
+            if(array_key_exists("type",$_SESSION))
+                if($_SESSION["type"] == "admin")
+                    echo '<li onclick="location.href=`cuenta-admin.php`;">Admin Menu</li>'
+        ?>
         <p>.</p>
     </ul>
 
@@ -31,7 +36,7 @@ include 'assets/header/cuentaheader.php';
         
     </div>
 
-    <script src="generator-guardadas.js"></script>
+    <script src = "assets/js/cuenta-guardadas.js"></script>
 
     
 </body>

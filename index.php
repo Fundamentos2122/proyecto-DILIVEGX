@@ -18,14 +18,14 @@ include 'assets/header/header.php';
 
     <div class="first">
 
-        <div class="builds">
+        <div class="builds" id="builds">
             <p class="cardtitle">Top Builds</p>
-            <div class="item"><a href="build.php"><img src="assets/icons/case.png" alt="" class="item-img"><p>Prueba</p></a></div>
+            
         </div>
 
         <div class="create">
             <p class="cardtitle">Nueva Build</p>
-            <div class="item2"><a href="newbuild.php"><img src="assets/icons/case.png" alt="" class="item-img"></a></div>
+            <div class="item2"><a href="newbuild.php"><img src="assets/icons/case.png" alt="" class="new-img"></a></div>
         </div>
 
     </div>

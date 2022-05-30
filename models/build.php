@@ -135,7 +135,7 @@ class build {
         $this->_Price = $Price;
     }
     public function setImage($Image) {
-        $this->_Image = $Image;
+        $this->_Image = base64_encode($Image);
     }
 
 

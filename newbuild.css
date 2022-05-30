@@ -12,6 +12,12 @@
 
 .item img{
     width: 10em;
+    height: 11em;
+    border-radius: 1em;
+}
+
+.item .name{
+    width: 10em;
 }
 
 .rate img{

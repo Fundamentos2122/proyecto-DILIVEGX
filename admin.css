@@ -1,7 +1,6 @@
 .item{
     display: flex;
     flex-direction: column;
-    cursor: pointer;
     width:max-content;
     text-align: center;
 
@@ -65,28 +64,24 @@
 
 .review{
     min-width:15em;
-    
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-end;
+    width: 15em;
+    height: 15em;
 }
 
-.review>*{
-    
+.revtext{
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+
 
 .agregar{
     text-align: center;
     padding: 1em;
 }
 
-.btn{
-    font-size: 1em;
-    border-radius: 1em;
-    padding: 1em;
-    width: 50%;
-    margin: 2em 0 0 0;
-    min-width: max-content;
-    background-color: rgb(40, 35, 58);
-    color: white;
-    font-weight: bold;
-}
 

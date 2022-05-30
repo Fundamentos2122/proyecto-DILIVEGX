@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] === "GETuser"){
             $query = $connection->prepare('SELECT * FROM build WHERE idAutor = :id');
             $query->bindParam(':id',$id,PDO::PARAM_INT);
             $query->execute();
-            $parts = array();
+            $builds = array();
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                 $build = new build($row['id'],$row['Name'],$row['idAutor'],$row['idCPU'],$row['idMB'],$row['idCAS'],$row['idGPU'],$row['idSSD'],$row['idCPC'],$row['idPSU'],$row['idRAM'],$row['idFAN'],$row['CantLikes'],$row['CantDisLikes'],$row['Price'],$row['Image']);
@@ -54,16 +54,32 @@ if($_SERVER["REQUEST_METHOD"] === "GETuser"){
             echo $e;
         }
     }
+    else{
+        try{
+            $query = $connection->prepare('SELECT * FROM build');
+            $query->execute();
+            $builds = array();
+
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $build = new build($row['id'],$row['Name'],$row['idAutor'],$row['idCPU'],$row['idMB'],$row['idCAS'],$row['idGPU'],$row['idSSD'],$row['idCPC'],$row['idPSU'],$row['idRAM'],$row['idFAN'],$row['CantLikes'],$row['CantDisLikes'],$row['Price'],$row['Image']);
+                $builds[] = $build->getArray();
+            }
+            echo json_encode($builds);
+        }
+        catch(PDOException $e){
+            echo $e;
+        }
+    }
 }
 else if($_SERVER["REQUEST_METHOD"] === "POST"){
     if (array_key_exists("cpu", $_POST)) {
         //Utilizar el arreglo $_POST
         if ($_POST["_method"] === "POST") {
             //Registro nuevo
-            postBuild($_POST["name"],$_POST["autor"],$_POST["cpu"],$_POST["mb"],$_POST["ram"],$_POST["cas"],$_POST["gpu"],$_POST["ssd"],$_POST["cpc"],$_POST["psu"],$_POST["fan"],0,0,$_POST["price"],$_POST["image"], true);
+            postBuild($_POST["name"],$_POST["autor"],$_POST["cpu"],$_POST["mb"],$_POST["ram"],$_POST["cas"],$_POST["gpu"],$_POST["ssd"],$_POST["cpc"],$_POST["psu"],$_POST["fan"],0,0,$_POST["price"],base64_decode($_POST["image"]), true);
         }
         else if ($_POST["_method"] === "PUT") {
-            putBuild($_POST["id"],$_POST["name"],$_POST["autor"],$_POST["cpu"],$_POST["mb"],$_POST["ram"],$_POST["cas"],$_POST["gpu"],$_POST["ssd"],$_POST["cpc"],$_POST["psu"],$_POST["fan"],0,0,$_POST["price"],$_POST["image"], true);
+            putBuild($_POST["id"],$_POST["name"],$_POST["autor"],$_POST["cpu"],$_POST["mb"],$_POST["ram"],$_POST["cas"],$_POST["gpu"],$_POST["ssd"],$_POST["cpc"],$_POST["psu"],$_POST["fan"],0,0,$_POST["price"],base64_decode($_POST["image"]), true);
         }
     }
     else if (array_key_exists("id", $_POST)) {
@@ -76,10 +92,12 @@ else if($_SERVER["REQUEST_METHOD"] === "POST"){
         $data = json_decode(file_get_contents("php://input"));
 
         if ($data->_method === "POST") {
-            postBuild($data->name,$data->autor,$data->cpu,$data->mb,$data->ram,$data->cas,$data->gpu,$data->ssd,$data->cpc,$data->psu,$data->fan,0,0,$data->price,$data->image, false);
+            postBuild($data->name,$data->autor,$data->cpu,$data->mb,$data->ram,$data->cas,$data->gpu,$data->ssd,$data->cpc,$data->psu,$data->fan,0,0,$data->price,base64_decode($data->image), false);
         }
         else if($data->_method === "PUT") {
-            putBuild($data->id,$data->name,$data->autor,$data->cpu,$data->mb,$data->ram,$data->cas,$data->gpu,$data->ssd,$data->cpc,$data->psu,$data->fan,$data->CantLikes,$data->CantDisLikes,$data->price,$data->image, false);
+            putBuild($data->id,$data->name,$data->autor,$data->cpu,$data->mb,$data->ram,$data->cas,$data->gpu,$data->ssd,$data->cpc,$data->psu,$data->fan,$data->CantLikes,$data->CantDisLikes,$data->price,base64_decode($data->image), false);
+        }else if ($data->_method === "DELETE") {
+            deleteBuild($data->id, true);
         }
     }
     exit();
@@ -213,7 +231,6 @@ function putBuild($id,$name,$autor,$cpu,$mb,$ram,$cas,$gpu,$ssd,$cpc,$psu,$fan,$
         else{
             echo "Registro actualizado";
             if($redirect){
-                //header('Location: http://localhost/Proyecto/views/microfonos.php');
             }
             else{
                 echo "Registro actualizado";
@@ -231,7 +248,7 @@ function deleteBuild($id,$redirect){
     global $connection;
 
     try{
-        $query = $connection->prepare('DELETE FROM build WHERE id = :id');//Para actualizar es con una coma
+        $query = $connection->prepare('DELETE FROM build WHERE id = :id');
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
 
@@ -239,9 +256,7 @@ function deleteBuild($id,$redirect){
             echo "Error en la eliminación";
         }
         else{
-            // echo "Registro guardado";
             if($redirect){
-                //header('Location: http://localhost/Proyecto/views/microfonos.php');
             }
             else{
                 echo "Registro eliminado";

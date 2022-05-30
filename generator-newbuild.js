@@ -87,17 +87,10 @@ function paintCPUS() {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item" id = ${list[i].id} onclick="CPUselect(this)">
-             <img src="${list[i].Image}" alt="">
-             <p class="name">${list[i].Name}</p>
+        html +=`<div class="item" id = ${list[i].id} >
+             <img src="data:image/jpg;base64,${list[i].Image}" alt="" onclick="CPUselect(${list[i].id})">
+             <p class="name" onclick="window.open('http://localhost/proyecto/part.php?id=${list[i].id}')">${list[i].Name}</p>
              <p class="price">$${list[i].Price}</p>
-             <div class="rate">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-             </div>
            </div>`;
     }
 
@@ -106,12 +99,12 @@ function paintCPUS() {
 
 
 function CPUselect(selected){
-    document.getElementById(selected.id).style.backgroundColor = "rgb(114, 21, 201)";
-    document.getElementById(selected.id).style.color = "white";
+    document.getElementById(selected).style.backgroundColor = "rgb(114, 21, 201)";
+    document.getElementById(selected).style.color = "white";
     document.getElementById("cpu").style.pointerEvents = "none";
-    cpu = selected.id;
+    cpu = selected;
     for(var i = 0; i < list.length; i++)
-        if(list[i].id == selected.id)
+        if(list[i].id == selected)
             socket = list[i].Socket;
     getParts("mb");
 }
@@ -121,17 +114,10 @@ function paintMBS() {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item" id = ${list[i].id} onclick="MBselect(this)">
-             <img src="${list[i].Image}" alt="">
-             <p class="name">${list[i].Name}</p>
+        html +=`<div class="item" id = ${list[i].id} >
+             <img src="data:image/jpg;base64,${list[i].Image}" alt="" onclick="MBselect(${list[i].id})">
+             <p class="name" onclick="window.open('http://localhost/proyecto/part.php?id=${list[i].id}')">${list[i].Name}</p>
              <p class="price">$${list[i].Price}</p>
-             <div class="rate">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-             </div>
            </div>`;
     }
 
@@ -139,12 +125,12 @@ function paintMBS() {
 }
 
 function MBselect(selected){
-    document.getElementById(selected.id).style.backgroundColor = "rgb(114, 21, 201)";
-    document.getElementById(selected.id).style.color = "white";
+    document.getElementById(selected).style.backgroundColor = "rgb(114, 21, 201)";
+    document.getElementById(selected).style.color = "white";
     document.getElementById("mb").style.pointerEvents = "none";
-    mb = selected.id;
+    mb = selected;
     for(var i = 0; i < list.length; i++)
-        if(list[i].id == selected.id){
+        if(list[i].id == selected){
             formfactor = list[i].FormFactor;
             ddr = list[i].Ddr;
         }
@@ -156,17 +142,10 @@ function paintRAMS() {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item" id = ${list[i].id} onclick="RAMselect(this)">
-             <img src="${list[i].Image}" alt="">
-             <p class="name">${list[i].Name}</p>
+        html +=`<div class="item" id = ${list[i].id}>
+             <img src="data:image/jpg;base64,${list[i].Image}" alt=""  onclick="RAMselect(${list[i].id})">
+             <p class="name" onclick="window.open('http://localhost/proyecto/part.php?id=${list[i].id}')">${list[i].Name}</p>
              <p class="price">$${list[i].Price}</p>
-             <div class="rate">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-             </div>
            </div>`;
     }
 
@@ -174,10 +153,10 @@ function paintRAMS() {
 }
 
 function RAMselect(selected){
-    document.getElementById(selected.id).style.backgroundColor = "rgb(114, 21, 201)";
-    document.getElementById(selected.id).style.color = "white";
+    document.getElementById(selected).style.backgroundColor = "rgb(114, 21, 201)";
+    document.getElementById(selected).style.color = "white";
     document.getElementById("ram").style.pointerEvents = "none";
-    ram = selected.id;
+    ram = selected;
     if(formfactor == "MITX"){
         getParts("cas");
         formfactor = "MATX";
@@ -199,17 +178,10 @@ function paintCASS() {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item" id = ${list[i].id} onclick="CASselect(this)">
-             <img src="${list[i].Image}" alt="">
-             <p class="name">${list[i].Name}</p>
+        html +=`<div class="item" id = ${list[i].id}>
+             <img src="data:image/jpg;base64,${list[i].Image}" alt="" onclick="CASselect(${list[i].id})">
+             <p class="name" onclick="window.open('http://localhost/proyecto/part.php?id=${list[i].id}')">${list[i].Name}</p>
              <p class="price">$${list[i].Price}</p>
-             <div class="rate">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-             </div>
            </div>`;
     }
 
@@ -217,10 +189,10 @@ function paintCASS() {
 }
 
 function CASselect(selected){
-    document.getElementById(selected.id).style.backgroundColor = "rgb(114, 21, 201)";
-    document.getElementById(selected.id).style.color = "white";
+    document.getElementById(selected).style.backgroundColor = "rgb(114, 21, 201)";
+    document.getElementById(selected).style.color = "white";
     document.getElementById("cas").style.pointerEvents = "none";
-    cas = selected.id;
+    cas = selected;
     getParts("gpu");
 }
 
@@ -229,17 +201,10 @@ function paintGPUS() {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item" id = ${list[i].id} onclick="GPUselect(this)">
-             <img src="${list[i].Image}" alt="">
-             <p class="name">${list[i].Name}</p>
+        html +=`<div class="item" id = ${list[i].id}>
+             <img src="data:image/jpg;base64,${list[i].Image}" alt="" onclick="GPUselect(${list[i].id})">
+             <p class="name" onclick="window.open('http://localhost/proyecto/part.php?id=${list[i].id}')">${list[i].Name}</p>
              <p class="price">$${list[i].Price}</p>
-             <div class="rate">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-             </div>
            </div>`;
     }
 
@@ -247,10 +212,10 @@ function paintGPUS() {
 }
 
 function GPUselect(selected){
-    document.getElementById(selected.id).style.backgroundColor = "rgb(114, 21, 201)";
-    document.getElementById(selected.id).style.color = "white";
+    document.getElementById(selected).style.backgroundColor = "rgb(114, 21, 201)";
+    document.getElementById(selected).style.color = "white";
     document.getElementById("gpu").style.pointerEvents = "none";
-    gpu = selected.id;
+    gpu = selected;
     getParts("ssd");
 }
 
@@ -259,17 +224,10 @@ function paintSSDS() {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item" id = ${list[i].id} onclick="SSDselect(this)">
-             <img src="${list[i].Image}" alt="">
-             <p class="name">${list[i].Name}</p>
+        html +=`<div class="item" id = ${list[i].id} >
+             <img src="data:image/jpg;base64,${list[i].Image}" alt="" onclick="SSDselect(${list[i].id})">
+             <p class="name" onclick="window.open('http://localhost/proyecto/part.php?id=${list[i].id}')">${list[i].Name}</p>
              <p class="price">$${list[i].Price}</p>
-             <div class="rate">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-             </div>
            </div>`;
     }
 
@@ -277,10 +235,10 @@ function paintSSDS() {
 }
 
 function SSDselect(selected){
-    document.getElementById(selected.id).style.backgroundColor = "rgb(114, 21, 201)";
-    document.getElementById(selected.id).style.color = "white";
+    document.getElementById(selected).style.backgroundColor = "rgb(114, 21, 201)";
+    document.getElementById(selected).style.color = "white";
     document.getElementById("ssd").style.pointerEvents = "none";
-    ssd = selected.id;
+    ssd = selected;
     getParts("cpc");
 }
 
@@ -289,17 +247,10 @@ function paintCPCS() {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item" id = ${list[i].id} onclick="CPCselect(this)">
-             <img src="${list[i].Image}" alt="">
-             <p class="name">${list[i].Name}</p>
+        html +=`<div class="item" id = ${list[i].id}>
+             <img src="data:image/jpg;base64,${list[i].Image}" alt="" onclick="CPCselect(${list[i].id})">
+             <p class="name" onclick="window.open('http://localhost/proyecto/part.php?id=${list[i].id}')">${list[i].Name}</p>
              <p class="price">$${list[i].Price}</p>
-             <div class="rate">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-             </div>
            </div>`;
     }
 
@@ -307,10 +258,10 @@ function paintCPCS() {
 }
 
 function CPCselect(selected){
-    document.getElementById(selected.id).style.backgroundColor = "rgb(114, 21, 201)";
-    document.getElementById(selected.id).style.color = "white";
+    document.getElementById(selected).style.backgroundColor = "rgb(114, 21, 201)";
+    document.getElementById(selected).style.color = "white";
     document.getElementById("cpc").style.pointerEvents = "none";
-    cpc = selected.id;
+    cpc = selected;
     getParts("fan");
 }
 
@@ -319,17 +270,10 @@ function paintFANS() {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item" id = ${list[i].id} onclick="FANselect(this)">
-             <img src="${list[i].Image}" alt="">
-             <p class="name">${list[i].Name}</p>
+        html +=`<div class="item" id = ${list[i].id} >
+             <img src="data:image/jpg;base64,${list[i].Image}" alt="" onclick="FANselect(${list[i].id})">
+             <p class="name" onclick="window.open('http://localhost/proyecto/part.php?id=${list[i].id}')">${list[i].Name}</p>
              <p class="price">$${list[i].Price}</p>
-             <div class="rate">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-             </div>
            </div>`;
     }
 
@@ -337,10 +281,10 @@ function paintFANS() {
 }
 
 function FANselect(selected){
-    document.getElementById(selected.id).style.backgroundColor = "rgb(114, 21, 201)";
-    document.getElementById(selected.id).style.color = "white";
+    document.getElementById(selected).style.backgroundColor = "rgb(114, 21, 201)";
+    document.getElementById(selected).style.color = "white";
     document.getElementById("fan").style.pointerEvents = "none";
-    fan = selected.id;
+    fan = selected;
     getParts("psu");
 }
 
@@ -349,17 +293,10 @@ function paintPSUS() {
     let html = '';
 
     for(var i = 0; i < list.length; i++) {
-        html +=`<div class="item" id = ${list[i].id} onclick="PSUselect(this)">
-             <img src="${list[i].Image}" alt="">
-             <p class="name">${list[i].Name}</p>
+        html +=`<div class="item" id = ${list[i].id} >
+             <img src="data:image/jpg;base64,${list[i].Image}" alt="" onclick="PSUselect(${list[i].id})">
+             <p class="name" onclick="window.open('http://localhost/proyecto/part.php?id=${list[i].id}')">${list[i].Name}</p>
              <p class="price">$${list[i].Price}</p>
-             <div class="rate">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-                 <img src="assets/icons/star.svg" alt="">
-             </div>
            </div>`;
     }
 
@@ -367,10 +304,10 @@ function paintPSUS() {
 }
 
 function PSUselect(selected){
-    document.getElementById(selected.id).style.backgroundColor = "rgb(114, 21, 201)";
-    document.getElementById(selected.id).style.color = "white";
+    document.getElementById(selected).style.backgroundColor = "rgb(114, 21, 201)";
+    document.getElementById(selected).style.color = "white";
     document.getElementById("psu").style.pointerEvents = "none";
-    psu = selected.id;
+    psu = selected;
 
     parts = [cpu, mb, ram, cas, gpu, ssd, cpc, psu, fan];
     console.log(cpu);

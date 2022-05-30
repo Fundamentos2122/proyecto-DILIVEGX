@@ -107,7 +107,36 @@ else if($_SERVER["REQUEST_METHOD"] === "GETReported"){
             putReviewD($data->id);
     }
     exit();
+}else if($_SERVER["REQUEST_METHOD"] === "POSTR"){
+    if (array_key_exists("id", $_POST)) {
+            reported($_POST["id"]);
+    }
+    else {
+        $data = json_decode(file_get_contents("php://input"));
+            reported($data->id);
+    }
+    exit();
 }
+
+function reported($id){
+    global $connection;
+    try{
+        $query = $connection->prepare('UPDATE review SET CantReport = CantReport+1 WHERE id = :id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        if($query->rowCount() === 0){
+            echo "Error en la actualización";
+        }
+        else{
+            echo "Registro actualizado";
+        }
+    }
+    catch(PDOException $e){
+        echo $e;
+    }
+}
+
 
 function putReviewL($id){
     global $connection;

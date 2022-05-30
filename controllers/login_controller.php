@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $query->execute();
 
             if ($query->rowCount() === 0) {
-                echo "Usuario no encontrado";
+                header('Location: http://localhost/proyecto/login.php?error=Usuario no encontrado');
                 exit();
             }
 
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
 
             if (!password_verify($password, $user->getPassword())) {
-                echo "Contraseña inválida";
+                header('Location: http://localhost/proyecto/login.php?error=Contraseña inválida');
                 exit();
             }
 

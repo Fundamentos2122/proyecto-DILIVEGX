@@ -17,6 +17,10 @@ include 'assets/header/header.php';
         Iniciar Sesión
     </p>
     <form class="form" action="controllers/login_controller.php" method="POST" autocomplete="off" enctype="multipart/form-data">
+        <?php
+            if (array_key_exists("error", $_GET)) 
+                echo '<p style="color:red;">' .$_GET["error"]. '</p>';
+        ?>
         <input type="hidden" name="_method" value="POST">
         <div class="input-group">
             <label for="email">Email: </label>

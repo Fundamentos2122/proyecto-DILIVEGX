@@ -84,8 +84,8 @@
     }
 
     .form{
-        padding: 20px ;
+        padding: 1px ;
         gap: 1em;
-        height: 100vh;
+        height: fit-content;
     }
 }

@@ -249,6 +249,55 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
         }
     }
 }else if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (array_key_exists("id", $_POST)) {
+        if(!empty($_FILES["photo"]["tmp_name"])){
+            $id = trim($_POST["id"]);
+            $type = trim($_POST["types"]);
+            $name = trim($_POST["name"]);
+            $desc = trim($_POST["desc"]);
+            $price = trim($_POST["price"]);
+            $photo = "";
+            if (sizeof($_FILES) > 0) {
+                $tmp_name = $_FILES["photo"]["tmp_name"];
+                $photo = file_get_contents($tmp_name);
+            }
+            $socket = trim($_POST["socket"]);
+            if($socket == "")
+            $socket = null;
+            $ff = trim($_POST["ff"]);
+            if($ff == "")
+            $ff = null;
+            $wat = trim($_POST["wat"]);
+            if($wat == "")
+            $wat = null;
+            $brand = trim($_POST["brand"]);
+            $ddr = trim($_POST["ddr"]);
+            if($ddr == "")
+            $ddr = null;
+            putpart($id,$type, $name, $desc, $price, $photo, $socket, $ff, $wat, $brand, $ddr);
+        }
+        else{
+        $id = trim($_POST["id"]);
+        $type = trim($_POST["types"]);
+        $name = trim($_POST["name"]);
+        $desc = trim($_POST["desc"]);
+        $price = trim($_POST["price"]);
+        $socket = trim($_POST["socket"]);
+        if($socket == "")
+        $socket = null;
+        $ff = trim($_POST["ff"]);
+        if($ff == "")
+        $ff = null;
+        $wat = trim($_POST["wat"]);
+        if($wat == "")
+        $wat = null;
+        $brand = trim($_POST["brand"]);
+        $ddr = trim($_POST["ddr"]);
+        if($ddr == "")
+        $ddr = null;
+        putpartf($id,$type, $name, $desc, $price, $socket, $ff, $wat, $brand, $ddr);
+        }
+    } else
     if (array_key_exists("name", $_POST)) {
     $type = trim($_POST["types"]);
     $name = trim($_POST["name"]);
@@ -273,12 +322,68 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
     $ddr = trim($_POST["ddr"]);
     if($ddr == "")
     $ddr = null;
-    if (sizeof($_FILES) > 0) {
-        $tmp_name = $_FILES["photo"]["tmp_name"];
-
-        $photo = file_get_contents($tmp_name);
-    }
     postPart($type, $name, $desc, $price, $photo, $socket, $ff, $wat, $brand, $ddr);
+    }
+}
+
+function putPart($id,$type, $name, $desc, $price, $photo, $socket, $ff, $wat, $brand, $ddr){
+    global $connection;
+    
+    try {
+        $query = $connection->prepare('UPDATE part SET Type = :type,Name = :name,Description = :desc,Price = :price, Image = :photo, Socket = :socket,FormFactor = :ff,Wattage = :wat,Brand = :brand,Ddr = :ddr WHERE id = :id');
+        $query->bindParam(':type', $type, PDO::PARAM_STR);
+        $query->bindParam(':name', $name, PDO::PARAM_STR);
+        $query->bindParam(':desc', $desc, PDO::PARAM_STR);
+        $query->bindParam(':price', $price, PDO::PARAM_INT);
+        $query->bindParam(':photo', $photo, PDO::PARAM_STR);
+        $query->bindParam(':socket', $socket, PDO::PARAM_STR);
+        $query->bindParam(':ff', $ff, PDO::PARAM_STR);
+        $query->bindParam(':wat', $wat, PDO::PARAM_INT);
+        $query->bindParam(':brand', $brand, PDO::PARAM_STR);
+        $query->bindParam(':ddr', $ddr, PDO::PARAM_INT);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+        
+
+        if($query->rowCount() === 0) {
+            echo "Error en la inserción";
+        }
+        else {
+            header('Location: http://localhost/proyecto/part.php?id='.$id);
+        }
+    }
+    catch(PDOException $e) {
+        echo $e;
+    }
+}
+
+function putPartf($id,$type, $name, $desc, $price, $socket, $ff, $wat, $brand, $ddr){
+    global $connection;
+    
+    try {
+        $query = $connection->prepare('UPDATE part SET Type = :type,Name = :name,Description = :desc,Price = :price, Socket = :socket,FormFactor = :ff,Wattage = :wat,Brand = :brand,Ddr = :ddr WHERE id = :id');
+        $query->bindParam(':type', $type, PDO::PARAM_STR);
+        $query->bindParam(':name', $name, PDO::PARAM_STR);
+        $query->bindParam(':desc', $desc, PDO::PARAM_STR);
+        $query->bindParam(':price', $price, PDO::PARAM_INT);
+        $query->bindParam(':socket', $socket, PDO::PARAM_STR);
+        $query->bindParam(':ff', $ff, PDO::PARAM_STR);
+        $query->bindParam(':wat', $wat, PDO::PARAM_INT);
+        $query->bindParam(':brand', $brand, PDO::PARAM_STR);
+        $query->bindParam(':ddr', $ddr, PDO::PARAM_INT);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+        
+
+        if($query->rowCount() === 0) {
+            echo "Error en la inserción";
+        }
+        else {
+            header('Location: http://localhost/proyecto/part.php?id='.$id);
+        }
+    }
+    catch(PDOException $e) {
+        echo $e;
     }
 }
 
@@ -304,7 +409,7 @@ function postPart($type, $name, $desc, $price, $photo, $socket, $ff, $wat, $bran
             echo "Error en la inserción";
         }
         else {
-            //header('Location: http://localhost/proyecto/login.php');
+            header('Location: http://localhost/proyecto/cuenta-admin.php');
         }
     }
     catch(PDOException $e) {

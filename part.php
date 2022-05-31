@@ -15,10 +15,20 @@
 <?php
 include 'assets/header/header.php';
 if(array_key_exists("id",$_SESSION))
+    if($_SESSION["type"]=="admin")
     echo '<div style="display: flex; gap: 1em; margin: 1em; align-items: center;">
                 <img id="favorite" src="assets/icons/star.svg" alt="" style="width:1.5em; cursor: pointer;" onclick="favorite();">
                 <p>Favorita</p>
+          </div>
+          <div style="display: flex; gap: 1em; margin: 1em; align-items: center;">
+                <img id="favorite" src="assets/icons/edit.png" alt="" style="width:1.5em; cursor: pointer;" onclick="edit();">
+                <p>Editar</p>
           </div>';
+    else'<div style="display: flex; gap: 1em; margin: 1em; align-items: center;">
+                <img id="favorite" src="assets/icons/star.svg" alt="" style="width:1.5em; cursor: pointer;" onclick="favorite();">
+                <p>Favorita</p>
+            </div>';
+
 ?>
 
 
@@ -71,6 +81,10 @@ if(array_key_exists("id",$_SESSION))
         document.addEventListener("DOMContentLoaded", function(){
             getPart();
         });
+
+        function edit(){
+            window.location.href = `http://localhost/proyecto/admin-edit.php?id=${id}`;
+        }
 
         function checkFavorite(){
             let xhttp = new XMLHttpRequest();
@@ -266,30 +280,30 @@ if(array_key_exists("id",$_SESSION))
 
         function report(idrev){
 
-        let xhttp = new XMLHttpRequest();
+            let xhttp = new XMLHttpRequest();
 
-        xhttp.open("POSTR", "controllers/review_controller.php", true);
+            xhttp.open("POSTR", "controllers/review_controller.php", true);
 
-        xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.setRequestHeader("Content-type", "application/json");
 
-        xhttp.onreadystatechange = function() {
-            if (this.readyState === 4) {
-                if (this.status === 200) {
-                    if (this.responseText === "Registro guardado") {
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4) {
+                    if (this.status === 200) {
+                        if (this.responseText === "Registro guardado") {
+                        }
+                    }
+                    else {
+                        console.log("Error");
                     }
                 }
-                else {
-                    console.log("Error");
-                }
-            }
-        };
-        let data = {
-            _method: 'PUT',
-            id: idrev
-        };
-        xhttp.send(JSON.stringify(data));
+            };
+            let data = {
+                _method: 'PUT',
+                id: idrev
+            };
+            xhttp.send(JSON.stringify(data));
 
-        document.getElementById(`r${idrev}`).style.display = "none";
+            document.getElementById(`r${idrev}`).style.display = "none";
 
         }
 

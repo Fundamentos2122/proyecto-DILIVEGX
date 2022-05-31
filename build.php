@@ -170,7 +170,6 @@ if(array_key_exists("id",$_SESSION))
                     document.getElementById("countL").innerHTML = list.CantLikes;
                     document.getElementById("countD").innerHTML = list.CantDisLikes;
                     document.getElementById("name").innerHTML = list.Name;
-                    document.getElementById("price").innerHTML = "$"+ list.Price;
                     id = list.id;
                     if(<?php
                         if(array_key_exists("id",$_SESSION))
@@ -181,6 +180,8 @@ if(array_key_exists("id",$_SESSION))
                     checkSaved();
                     getAutor(list.idAutor);
                     printBuild(list);
+                    GetPrice(list);
+
                 }
                 else{
                     console.log("Error");
@@ -194,7 +195,6 @@ if(array_key_exists("id",$_SESSION))
     }
 
     function printBuild(list){
-
         //cpu
             let xhttp = new XMLHttpRequest();
             xhttp.open("GETcpus",`controllers/part_controller.php?id=${list.idCPU}`,true);
@@ -353,6 +353,153 @@ if(array_key_exists("id",$_SESSION))
             xhttp.send();
         }
         
+    }
+
+    function GetPrice(list){
+        //cpu
+            var price = 0;
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GETcpus",`controllers/part_controller.php?id=${list.idCPU}`,true);
+            xhttp.onreadystatechange = function(){
+                if(this.readyState === 4){
+                    if(this.status === 200){
+                        let part = JSON.parse(this.responseText);
+                        price+=part.Price;
+                        printmb();
+                    }
+                    else{
+                        console.log("Error");
+                    }
+                }
+            };
+            xhttp.send();
+        function printmb(){
+        //mb
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GETcpus",`controllers/part_controller.php?id=${list.idMB}`,true);
+            xhttp.onreadystatechange = function(){
+                if(this.readyState === 4){
+                    if(this.status === 200){
+                        let part = JSON.parse(this.responseText);
+                        price+=part.Price;
+                    printcas();
+                    }
+                    else{
+                        console.log("Error");
+                    }
+                }
+            };
+            xhttp.send();
+        }
+        function printcas(){
+        //case
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GETcpus",`controllers/part_controller.php?id=${list.idCAS}`,true);
+            xhttp.onreadystatechange = function(){
+                if(this.readyState === 4){
+                    if(this.status === 200){
+                        let part = JSON.parse(this.responseText);
+                        price+=part.Price;
+                    printgpu();
+                    }
+                    else{
+                        console.log("Error");
+                    }
+                }
+            };
+            xhttp.send();
+        }
+        function printgpu(){
+        //gpu
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GETcpus",`controllers/part_controller.php?id=${list.idGPU}`,true);
+            xhttp.onreadystatechange = function(){
+                if(this.readyState === 4){
+                    if(this.status === 200){
+                        let part = JSON.parse(this.responseText);
+                        price+=part.Price;
+                    printssd();
+                    }
+                    else{
+                        console.log("Error");
+                    }
+                }
+            };
+            xhttp.send();
+        }
+        function printssd(){
+        //ssd
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GETcpus",`controllers/part_controller.php?id=${list.idSSD}`,true);
+            xhttp.onreadystatechange = function(){
+                if(this.readyState === 4){
+                    if(this.status === 200){
+                        let part = JSON.parse(this.responseText);
+                        price+=part.Price;
+                    printcpc();
+                    }
+                    else{
+                        console.log("Error");
+                    }
+                }
+            };
+            xhttp.send();
+        }
+        function printcpc(){
+        //cpc
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GETcpus",`controllers/part_controller.php?id=${list.idCPC}`,true);
+            xhttp.onreadystatechange = function(){
+                if(this.readyState === 4){
+                    if(this.status === 200){
+                        let part = JSON.parse(this.responseText);
+                        price+=part.Price;
+                    printfan();
+                    }
+                    else{
+                        console.log("Error");
+                    }
+                }
+            };
+            xhttp.send();
+        }
+        function printfan(){
+        //fan
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GETcpus",`controllers/part_controller.php?id=${list.idFAN}`,true);
+            xhttp.onreadystatechange = function(){
+                if(this.readyState === 4){
+                    if(this.status === 200){
+                        let part = JSON.parse(this.responseText);
+                        price+=part.Price;
+                    printpsu();
+                    }
+                    else{
+                        console.log("Error");
+                    }
+                }
+            };
+            xhttp.send();
+        }
+        function printpsu(){
+        //psu
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GETcpus",`controllers/part_controller.php?id=${list.idPSU}`,true);
+            xhttp.onreadystatechange = function(){
+                if(this.readyState === 4){
+                    if(this.status === 200){
+                        let part = JSON.parse(this.responseText);
+                        price+=part.Price;
+                        console.log("price="+price);
+                        document.getElementById("price").innerHTML = "$"+ price;
+                    }
+                    else{
+                        console.log("Error");
+                    }
+                }
+            };
+            xhttp.send();
+        }
     }
 
     function getAutor(id){
